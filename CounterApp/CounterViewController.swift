@@ -11,11 +11,19 @@ final class CounterViewController: UIViewController {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
 
-        subscribeToCounter()
+        // subscribeToCounter()
+        counter.delegate = self
     }
 
 }
 
+extension CounterViewController: CounterDelegate {
+    func counterValueDidChange(_ sender: Counter) {
+        self.updateCounterLabelValue()
+    }
+}
+
+/*
 extension CounterViewController {
     private func subscribeToCounter() {
         counterValueObservation = counter.observe(\.value, options: [.initial]) {
@@ -25,6 +33,7 @@ extension CounterViewController {
         }
     }
 }
+*/
 
 extension CounterViewController {
     override func viewDidLoad() {
